@@ -1,0 +1,48 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Diretório de dependências do Node
+node_modules/
+
+# Diretório de dependências de pacotes
+jspm_packages/
+
+# Diretório de dependências de TypeScript
+dist/
+
+# Sistema de cache
+.cache/
+.parcel-cache/
+
+# Módulos de build
+.build/
+
+# Sistema de cache do test coverage
+.nyc_output/
+
+# Pastas de build
+build/
+tmp/
+temp/
+
+# Sistema de cache de jest
+coverage/
+
+# Configurações de editor
+.vscode/
+.idea/
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Arquivo de variáveis de ambiente
+.env
+
+# Diretório de documentação
+docs/
+

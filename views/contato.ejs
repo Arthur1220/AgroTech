@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroTech</title>
+    <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/contato.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="Logomarca">
+            <p id="Nome_Principal"><strong>AgroTech</strong></p>
+            <p id="Nome_Secundario">Tecnologia na Agropecuária</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/">Áreas de Atuação</a></li>
+                <li><a href="/">Projetos</a></li>
+                <li><a href="/">Equipe</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="Home">
+            <section id="LOGO">
+                <img src="/images/sheep_2.ico" alt="Logo da AgroTech">
+                <p><strong>Descubra nossos serviços e produtos ao preencher o formulário para mostrar seu interesse. Depois, entraremos em contato para dar seguimento ao seu pedido. Todas as transações são feitas diretamente conosco pelos contatos disponíveis.</strong></p>
+            </section>
+
+            <section>
+                <form action="/contato" method="POST">
+                    <div id="Nome">
+                        <label for="Nome">Nome:</label>
+                        <input type="text" id="Nome" name="Nome" required>
+                    </div>
+                    
+                    <div id="Email">
+                        <label for="Email">Email:</label>
+                        <input type="email" id="Email" name="Email" required>
+                    </div>
+
+                    <div id="Telefone">
+                        <label for="DDD">DDD</label>
+                        <input id="DDD_Label" type="tel" id="DDD" name="DDD" required>
+
+                        <label for="Telefone">Telefone:</label>
+                        <input id="Tel_Label" type="tel" id="Telefone" name="Telefone" required>
+                    </div>
+
+                    <div id="Mensagem">
+                        <label for="Mensagem">Mensagem:</label>
+                        <textarea id="Mensagem" name="Mensagem" required></textarea>
+                    </div>
+
+                    <button type="submit">Enviar</button>
+                </form>
+            </section>
+        </div>
+
+        <section class="Login">
+            <h3>Ja possui cadastro?</h3>
+            <h3>Faca ja o seu login!</h3>
+
+            <a href="/login"><button>Login</button></a>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 AgroTech. Todos os direitos reservados.</p>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/">Áreas de Atuação</a></li>
+                <li><a href="/">Projetos</a></li>
+                <li><a href="/">Equipe</a></li>
+                <li><a href="/contato">Contato</a></li>
+                <li><a href="/login">Login</a></li>
+            </ul>
+        </nav>
+    </footer>
+
+</body>
+</html>

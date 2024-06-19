@@ -1,0 +1,120 @@
+CREATE DATABASE IF NOT EXISTS AgroTech;
+USE AgroTech;
+
+CREATE TABLE IF NOT EXISTS TBL_StatusPedido (
+    ID_StatusPedido INT AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS TBL_TipoPessoa (
+    ID_TipoPessoa INT AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS TBL_StatusPagamento (
+    ID_StatusPagamento INT AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS TBL_Categorias (
+    ID_Categoria INT AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(100) NOT NULL
+);
+    
+CREATE TABLE IF NOT EXISTS TBL_Endereco (
+    ID_Endereco INT AUTO_INCREMENT PRIMARY KEY,
+    CEP VARCHAR(20) NOT NULL,
+    Estado VARCHAR(100) NOT NULL,
+    Cidade VARCHAR(100) NOT NULL,
+    Bairro VARCHAR(100) NOT NULL,
+    Rua VARCHAR(100) NOT NULL,
+    Numero VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS TBL_Produtos (
+    ID_Produto INT AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(100) NOT NULL,
+    Descricao TEXT,
+    Preco DECIMAL(10, 2) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS TBL_Estoque (
+    ID_Estoque INT AUTO_INCREMENT PRIMARY KEY,
+    Quantidade INT NOT NULL,
+    ID_Produto INT,
+    FOREIGN KEY (ID_Produto) REFERENCES TBL_Produtos(ID_Produto)
+);
+    
+CREATE TABLE IF NOT EXISTS TBL_Pagamento (
+    ID_Pagamento INT AUTO_INCREMENT PRIMARY KEY,
+    MetodoPagamento VARCHAR(100) NOT NULL,
+    ValorTotal DECIMAL(10, 2) NOT NULL,
+    DataPagamento TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    ID_StatusPagamento INT,
+    FOREIGN KEY (ID_StatusPagamento) REFERENCES TBL_StatusPagamento(ID_StatusPagamento)
+);
+    
+CREATE TABLE IF NOT EXISTS TBL_Pessoa (
+    ID_Cliente INT AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(100) NOT NULL,
+    CPF VARCHAR(20) NOT NULL,
+    DataNascimento DATE,
+    Email VARCHAR(100) NOT NULL,
+    Senha VARCHAR(255) NOT NULL,
+    Telefone VARCHAR(20),
+    Created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    Login_at TIMESTAMP,
+    ID_TipoPessoa INT,
+    ID_Endereco INT,
+    FOREIGN KEY (ID_TipoPessoa) REFERENCES TBL_TipoPessoa(ID_TipoPessoa),
+    FOREIGN KEY (ID_Endereco) REFERENCES TBL_Endereco(ID_Endereco)
+);
+
+CREATE TABLE IF NOT EXISTS TBL_Fazenda (
+    ID_Fazenda INT AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(100) NOT NULL,
+    Created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    ID_Cliente INT,
+    ID_Endereco INT,
+    FOREIGN KEY (ID_Cliente) REFERENCES TBL_Pessoa(ID_Cliente),
+    FOREIGN KEY (ID_Endereco) REFERENCES TBL_Endereco(ID_Endereco)
+);
+
+CREATE TABLE IF NOT EXISTS TBL_Suporte (
+    ID_Suporte INT AUTO_INCREMENT PRIMARY KEY,
+    Descricao TEXT NOT NULL,
+    Created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    ID_Cliente INT,
+    FOREIGN KEY (ID_Cliente) REFERENCES TBL_Pessoa(ID_Cliente)
+);
+
+CREATE TABLE IF NOT EXISTS TBL_Pedidos (
+    ID_Pedido INT AUTO_INCREMENT PRIMARY KEY,
+    DataPedido TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    ValorTotal DECIMAL(10, 2) NOT NULL,
+    ID_Cliente INT,
+    ID_Pagamento INT,
+    ID_StatusPedido INT,
+    FOREIGN KEY (ID_Cliente) REFERENCES TBL_Pessoa(ID_Cliente),
+    FOREIGN KEY (ID_Pagamento) REFERENCES TBL_Pagamento(ID_Pagamento),
+    FOREIGN KEY (ID_StatusPedido) REFERENCES TBL_StatusPedido(ID_StatusPedido)
+);
+    
+CREATE TABLE IF NOT EXISTS TBL_ItensPedidos (
+    ID_ItensPedidos INT AUTO_INCREMENT PRIMARY KEY,
+    Quantidade INT NOT NULL,
+    PrecoUnitario DECIMAL(10, 2) NOT NULL,
+    ID_Pedido INT,
+    ID_Estoque INT,
+    FOREIGN KEY (ID_Pedido) REFERENCES TBL_Pedidos(ID_Pedido),
+    FOREIGN KEY (ID_Estoque) REFERENCES TBL_Estoque(ID_Estoque)
+);
+
+CREATE TABLE IF NOT EXISTS TBL_Mensagens ( 
+    ID_Mensagem INT AUTO_INCREMENT PRIMARY KEY, 
+    Nome VARCHAR(100) NOT NULL, 
+    Email VARCHAR(100) NOT NULL, 
+    DDD VARCHAR(5) NOT NULL, 
+    Telefone VARCHAR(20) NOT NULL, 
+    Mensagem TEXT NOT NULL 
+);
