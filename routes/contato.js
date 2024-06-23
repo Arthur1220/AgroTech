@@ -3,6 +3,7 @@ const nodemailer = require('nodemailer');
 const router = express.Router();
 const mensagensModel = require('../models/mensagensModels');
 const db = require('../config/database');
+require('dotenv').config();
 
 // Rota para a página de contato
 router.get('/', (req, res) => {
@@ -23,17 +24,13 @@ router.post('/', async (req, res) => {
     // Armazenar as informações do formulário na tabela TBL_Mensagens do banco de dados
     await mensagensModel.createMensagem({ Nome, Email, DDD, Telefone, Mensagem });
     console.log('Dados do formulário armazenados com sucesso!');
-    
-    //const query = 'INSERT INTO TBL_Mensagens (Nome, Email, DDD, Telefone, Mensagem) VALUES (?, ?, ?, ?, ?)';
-    //await db.query(query, [Nome, Email, DDD, Telefone, Mensagem]);
-
 
     // Configurar o transporte de email
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'agrotech_contact@gmail.com',
-        pass: 'your-app-password' // Substitua pela senha de aplicativo
+        user: 'agrotech.contact2358@gmail.com',
+        pass:  process.env.EMAIL_PASSWORD // Substitua pela senha de aplicativo
       }
     });
 
