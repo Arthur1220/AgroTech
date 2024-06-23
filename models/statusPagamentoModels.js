@@ -5,6 +5,11 @@ const getStatusPagamentos = async () => {
     return rows;
 };
 
+const getStatusPagamentoById = async (id) => {
+    const [rows] = await pool.query('SELECT * FROM TBL_StatusPagamento WHERE ID_StatusPagamento = ?', [id]);
+    return rows;
+}
+
 const createStatusPagamento = async (statusPagamento) => {
     const { Nome } = statusPagamento;
     const [result] = await pool.query(
@@ -28,4 +33,4 @@ const deleteStatusPagamento = async (id) => {
     return result.affectedRows;
 };
 
-module.exports = { getStatusPagamentos, createStatusPagamento, updateStatusPagamento, deleteStatusPagamento };
+module.exports = { getStatusPagamentos, getStatusPagamentoById, createStatusPagamento, updateStatusPagamento, deleteStatusPagamento };

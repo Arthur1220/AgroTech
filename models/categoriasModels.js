@@ -5,6 +5,11 @@ const getCategorias = async () => {
     return rows;
 };
 
+const getCategoriaById = async (id) => {
+    const [rows] = await pool.query('SELECT * FROM TBL_Categorias WHERE ID_Categoria = ?', [id]);
+    return rows;
+}
+
 const createCategoria = async (categoria) => {
     const { Nome } = categoria;
     const [result] = await pool.query(
@@ -28,4 +33,4 @@ const deleteCategoria = async (id) => {
     return result.affectedRows;
 };
 
-module.exports = { getCategorias, createCategoria, updateCategoria, deleteCategoria };
+module.exports = { getCategorias, getCategoriaById, createCategoria, updateCategoria, deleteCategoria };

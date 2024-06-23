@@ -5,6 +5,11 @@ const getTipoPessoas = async () => {
     return rows;
 };
 
+const getTipoPessoaById = async (id) => {
+    const [rows] = await pool.query('SELECT * FROM TBL_TipoPessoa WHERE ID_TipoPessoa = ?', [id]);
+    return rows;
+}
+
 const createTipoPessoa = async (tipoPessoa) => {
     const { Nome } = tipoPessoa;
     const [result] = await pool.query(
@@ -28,4 +33,4 @@ const deleteTipoPessoa = async (id) => {
     return result.affectedRows;
 };
 
-module.exports = { getTipoPessoas, createTipoPessoa, updateTipoPessoa, deleteTipoPessoa };
+module.exports = { getTipoPessoas, getTipoPessoaById, createTipoPessoa, updateTipoPessoa, deleteTipoPessoa };
