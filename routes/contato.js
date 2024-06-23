@@ -25,6 +25,7 @@ router.post('/', async (req, res) => {
     await mensagensModel.createMensagem({ Nome, Email, DDD, Telefone, Mensagem });
     console.log('Dados do formulário armazenados com sucesso!');
 
+    /*
     // Configurar o transporte de email
     const transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -52,6 +53,8 @@ router.post('/', async (req, res) => {
         res.render('contato', { title: 'Contato', message: 'Formulário enviado com sucesso!', messageType: 'success' });
       }
     });
+  */
+ 
   } catch (err) {
     console.error('Erro ao armazenar os dados do formulário: ' + err.stack);
     res.status(500).render('contato', { title: 'Contato', message: 'Erro interno do servidor.', messageType: 'error' });
