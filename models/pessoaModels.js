@@ -1,4 +1,4 @@
-const pool = require('../config/db');
+const pool = require('../config/database');
 
 const getPedidos = async () => {
     const [rows] = await pool.query('SELECT * FROM TBL_Pedido');
