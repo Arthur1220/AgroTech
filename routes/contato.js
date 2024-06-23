@@ -1,6 +1,7 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
 const router = express.Router();
+const mensagensModel = require('../models/mensagensModels');
 const db = require('../config/database');
 
 // Rota para a página de contato
@@ -20,10 +21,12 @@ router.post('/', async (req, res) => {
     }
 
     // Armazenar as informações do formulário na tabela TBL_Mensagens do banco de dados
-    const query = 'INSERT INTO TBL_Mensagens (Nome, Email, DDD, Telefone, Mensagem) VALUES (?, ?, ?, ?, ?)';
-    await db.query(query, [Nome, Email, DDD, Telefone, Mensagem]);
-
+    await mensagensModel.createMensagem({ Nome, Email, DDD, Telefone, Mensagem });
     console.log('Dados do formulário armazenados com sucesso!');
+    
+    //const query = 'INSERT INTO TBL_Mensagens (Nome, Email, DDD, Telefone, Mensagem) VALUES (?, ?, ?, ?, ?)';
+    //await db.query(query, [Nome, Email, DDD, Telefone, Mensagem]);
+
 
     // Configurar o transporte de email
     const transporter = nodemailer.createTransport({
