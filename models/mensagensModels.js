@@ -11,7 +11,7 @@ const getMensagemById = async (id) => {
 }
 
 const createMensagem = async (mensagem) => {
-    const { ID_Usuario, ID_Chat, Mensagem } = mensagem;
+    const { Nome, Email, DDD, Telefone, Mensagem } = mensagem;
     const [result] = await pool.query(
         'INSERT INTO TBL_Mensagens (Nome, Email, DDD, Telefone, Mensagem) VALUES (?, ?, ?, ?, ?)',
         [Nome, Email, DDD, Telefone, Mensagem]
