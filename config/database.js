@@ -1,15 +1,23 @@
-const mysql = require('mysql');
+const mysql = require('mysql2/promise');
+require('dotenv').config();
 
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: ' ',
-  database: 'AgroTech'
+const pool = mysql.createPool({
+  host: process.env.DB_HOST || 'localhost',
+  user: process.env.DB_USER || 'root',
+  password: process.env.DB_PASSWORD || ' ',
+  database: process.env.DB_NAME || 'AgroTech',
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
 });
 
-connection.connect((err) => {
-  if (err) throw err;
-  console.log('Conectado ao banco de dados MySQL!');
-});
+pool.getConnection()
+  .then(connection => {
+    console.log('Conectado ao banco de dados MySQL!');
+    connection.release(); // Libera a conexão de volta para o pool
+  })
+  .catch(err => {
+    console.error('Erro ao conectar ao banco de dados MySQL:', err);
+  });
 
-module.exports = connection;
+module.exports = pool;

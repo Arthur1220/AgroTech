@@ -1,7 +1,9 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
 const router = express.Router();
+const mensagensModel = require('../models/mensagensModels');
 const db = require('../config/database');
+require('dotenv').config();
 
 // Rota para a página de contato
 router.get('/', (req, res) => {
@@ -20,17 +22,16 @@ router.post('/', async (req, res) => {
     }
 
     // Armazenar as informações do formulário na tabela TBL_Mensagens do banco de dados
-    const query = 'INSERT INTO TBL_Mensagens (Nome, Email, DDD, Telefone, Mensagem) VALUES (?, ?, ?, ?, ?)';
-    await db.query(query, [Nome, Email, DDD, Telefone, Mensagem]);
-
+    await mensagensModel.createMensagem({ Nome, Email, DDD, Telefone, Mensagem });
     console.log('Dados do formulário armazenados com sucesso!');
 
+    /*
     // Configurar o transporte de email
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'agrotech_contact@gmail.com',
-        pass: 'your-app-password' // Substitua pela senha de aplicativo
+        user: 'agrotech.contact2358@gmail.com',
+        pass:  process.env.EMAIL_PASSWORD // Substitua pela senha de aplicativo
       }
     });
 
@@ -52,6 +53,8 @@ router.post('/', async (req, res) => {
         res.render('contato', { title: 'Contato', message: 'Formulário enviado com sucesso!', messageType: 'success' });
       }
     });
+  */
+ 
   } catch (err) {
     console.error('Erro ao armazenar os dados do formulário: ' + err.stack);
     res.status(500).render('contato', { title: 'Contato', message: 'Erro interno do servidor.', messageType: 'error' });
