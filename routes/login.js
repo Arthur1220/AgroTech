@@ -17,6 +17,13 @@ router.post('/', (req, res) => {
   login.then(results => {
     if (results.length > 0) {
       // Credenciais corretas
+      if (results[0].tipoPessoa === 'Cliente') {
+        res.redirect('/cliente');
+      } else if (results[0].tipoPessoa === 'Funcionario') {
+        res.redirect('/funcionario');
+      } else {
+        res.send('Tipo de usuário inválido.');
+      }
       res.send('Login bem-sucedido!');
     } else {
       // Credenciais incorretas
