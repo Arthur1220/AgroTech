@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../config/database'); // Importa a conexão do banco de dados
+const pessoaModel = require('../models/pessoaModels'); 
+const db = require('../config/database');
 
 // Rota para a página de contato
 router.get('/', (req, res) => {
@@ -12,15 +13,8 @@ router.post('/', (req, res) => {
 
   const { Email, Senha } = req.body;
 
-  // Consulta ao banco de dados para verificar as credenciais
-  const query = 'SELECT * FROM TBL_Pessoa WHERE Email = ? AND Senha = ?';
-  db.query(query, [Email, Senha], (err, results) => {
-    if (err) {
-      console.error('Erro ao consultar o banco de dados: ' + err.stack);
-      res.status(500).send('Erro interno do servidor.');
-      return;
-    }
-
+  const login = pessoaModel.getPessoaLogin(Email, Senha);
+  login.then(results => {
     if (results.length > 0) {
       // Credenciais corretas
       res.send('Login bem-sucedido!');
@@ -28,8 +22,11 @@ router.post('/', (req, res) => {
       // Credenciais incorretas
       res.send('Credenciais inválidas. Tente novamente.');
     }
-  });
+  }).catch(err => {
 
+    console.error('Erro ao consultar o banco de dados: ' + err.stack);
+    res.status(500).send('Erro interno do servidor.');
+  });
 });
 
 module.exports = router;
