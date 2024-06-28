@@ -8,18 +8,26 @@ const db = require('../config/database');
 require('dotenv').config();
 
 // Rota para a página de contato
-const usuarios = pessoaModels.getPessoas(); 
 router.get('/', (req, res) => {
-  res.render('cadastroFazenda', { title: 'Cadastrar Fazenda', usuarios });
+  pessoaModels.getPessoaNome()
+  .then(results => {
+      const usuarios = results;
+      res.render('cadastroFazenda', { title: 'Cadastrar Fazenda', usuarios });
+  })
+  .catch(err => {
+      console.error(err);
+  })
+
 });
 
 // Lida com o envio do formulário de contato
 router.post('/', async (req, res) => {
   try {
-    const { Usuario, NomeFazenda, CEP_Numero, Cidade, Estado, Bairro, Rua } = req.body;
-
+    console.log(req.body);
+    const { Usuario, NomeFazenda, CEP, Numero, Cidade, Estado, Bairro, Logradouro } = req.body;
+    
     // Verificar se todos os campos necessários estão preenchidos
-    if (!Usuario || !NomeFazenda || !CEP_Numero || !Cidade || !Estado || !Bairro || !Rua) {
+    if (!Usuario || !NomeFazenda || !CEP || !Numero || !Cidade || !Estado || !Bairro || !Logradouro) {
       res.status(400).render('contato', { title: 'Contato', message: 'Todos os campos são obrigatórios.', messageType: 'error' });
       return;
     }

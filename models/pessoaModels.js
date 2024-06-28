@@ -10,6 +10,15 @@ const getPessoaById = async (id) => {
     return rows;
 }
 
+const getPessoaNome = async () => {
+    try {
+        const [results, fields] = await pool.query('SELECT Nome FROM TBL_Pessoa');
+        return results;
+    } catch (err) {
+        throw err;
+    }
+};
+
 const getPessoaLogin = async (email, senha) => {
     const [rows] = await pool.query('SELECT * FROM TBL_Pessoa WHERE Email = ? AND Senha = ?', [email, senha]);
     return rows;
@@ -38,4 +47,4 @@ const deletePessoa = async (id) => {
     return result.affectedRows;
 }
 
-module.exports = { getPessoa, getPessoaById, getPessoaLogin, createPessoa, updatePessoa, deletePessoa };
+module.exports = { getPessoa, getPessoaById, getPessoaNome, getPessoaLogin, createPessoa, updatePessoa, deletePessoa };
