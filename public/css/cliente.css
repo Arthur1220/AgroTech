@@ -1,0 +1,336 @@
+/* Resetando alguns estilos padrão do navegador */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos gerais */
+body {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #fff;
+}
+
+/* Cabeçalho */
+header {
+    font-family: Outfit;
+    background-color: #fff;
+    padding: 10px 0;
+    width: 100%;
+    position: relative;
+    top: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+.Logomarca {
+    cursor: pointer; 
+    width: 200px;
+    height: 30px;
+    position: absolute;
+    left: 150px; 
+    top: 50%;  
+    transform: translateY(-50%);  
+
+}
+
+#Nome_Principal {
+    font-size: 20px;
+}
+
+#Nome_Secundario {
+    font-size: 14px;
+}
+
+header nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header nav ul{
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+header nav ul li {
+    margin: 0 10px;
+}
+
+header nav ul li a {
+    text-decoration: overline;
+    color: #000;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+header nav ul li a:hover {
+    color: rgba(0, 0, 0, 0.400);
+}
+
+/* Conteúdo principal */
+main {
+    font-family: Outfit;
+    display: flex;
+    flex-direction: column;
+
+}
+.Home {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+    flex-direction: column;
+    
+}
+
+.Home section {
+    align-content: center;
+    width: 600px;
+    
+}
+
+.Home h1 {
+    text-align: center;
+    margin-top: 10vh;
+    font-size: 56px;
+}
+
+.Home p {
+    font-size: 18px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.DadosPessoais section{
+    position: relative;
+    flex: none;
+    width: 350px;
+    height: 275px;
+    border: 2px solid #00000015;
+    padding: 25px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15); 
+    margin: 20px auto;
+    
+}
+
+.DadosPessoais li {
+    list-style: none;
+    margin-top: 10px;
+}
+
+.DadosPessoais li a {
+    text-decoration: underline;
+    color: #000;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.DadosPessoais li a:hover {
+    color: rgba(0, 0, 0, 0.400);
+}
+
+.Fazenda {
+    display: flex;
+    gap: 15px;
+    position: relative;
+    overflow: auto;
+    margin-bottom: 120px;
+    width: 90vw;
+}
+
+.Fazenda p{
+    text-align: center; 
+    font-size: 18px;
+}
+
+.Fazenda h3{
+    position: absolute;
+    bottom: 30px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.Fazenda section {
+    position: relative;
+    flex: none;
+    width: 350px;
+    height: 225px;
+    border: 2px solid #00000015;
+    padding: 25px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15); 
+    margin: 20px auto;
+}
+
+.Fazenda li {
+    list-style: none;
+    margin-top: 10px;
+}
+
+.Fazenda li a {
+    text-decoration: underline;
+    color: #000;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.Fazenda li a:hover {
+    color: rgba(0, 0, 0, 0.400);
+}
+
+.Softwares {
+    display: flex;
+    gap: 15px;
+    position: relative;
+    overflow: auto;
+    margin-bottom: 120px;
+    width: 90vw;
+}
+
+.Softwares section {
+    position: relative;
+    flex: none;
+    width: 350px;
+    height: 175px;
+    border: 2px solid #00000015;
+    padding: 25px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15); 
+    margin: 20px auto;
+}
+
+.Softwares li {
+    list-style: none;
+    margin-top: 10px;
+}
+
+.Softwares li a {
+    text-decoration: underline;
+    color: #000;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.Softwares li a:hover {
+    color: rgba(0, 0, 0, 0.400);
+}
+
+/* Rodapé */
+footer {
+    font-family: Outfit;
+    font-size: 12px;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+footer p {
+    text-align: left;
+    padding-left: 20px;
+}
+
+footer nav {
+    display: flex;
+    float: right;
+    justify-content: center;
+    align-items: center;
+}
+
+footer nav ul{
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+footer nav ul li {
+    margin: 0 10px;
+}
+
+footer nav ul li a {
+    text-decoration: overline;
+    color: #000;
+    transition: color 0.3s ease;
+}
+
+footer nav ul li a:hover {
+    color: rgba(0, 0, 0, 0.400);
+}
+
+/* Responsividade */
+@media screen and (max-width: 768px) {
+    /* Cabeçalho */
+    header {
+        flex-direction: row;
+        align-items: center; 
+        justify-content: space-between; 
+    }
+
+    header img {
+        position: absolute;
+        left: 0;
+        top: 20px;
+        margin: 0 auto;
+    }
+
+    header nav ul {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        margin-left: auto;
+        text-align: right;
+    }
+
+    /* Conteúdo principal */
+
+    /* Rodapé */
+    footer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    footer nav {
+        margin-top: 10px;
+    }
+    
+}
+
+@media screen and (max-width: 480px) {
+    /* Cabeçalho */
+    header {
+        flex-direction: row;
+        align-items: up; 
+        justify-content: space-between; 
+    }
+
+    header img {
+        position: absolute;
+        left: 0;
+        top: 15;
+    }
+
+    header nav ul {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-left: auto;
+        text-align: right;
+    }
+
+    /* Conteúdo principal */
+
+    /* Rodapé */
+    footer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    footer nav {
+        margin-top: 10px;
+    }
+}
