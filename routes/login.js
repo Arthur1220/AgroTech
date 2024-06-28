@@ -1,35 +1,37 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../config/database'); // Importa a conexão do banco de dados
+const pessoaModel = require('../models/pessoaModels'); 
+const db = require('../config/database');
 
-// Rota para a página de contato
+// Rota para a página de login
 router.get('/', (req, res) => {
   res.render('login', { title: 'Login' });
 });
 
 // Lida com o envio do formulário de login
-router.post('/', (req, res) => {
-
+router.post('/', async (req, res) => {
   const { Email, Senha } = req.body;
 
-  // Consulta ao banco de dados para verificar as credenciais
-  const query = 'SELECT * FROM TBL_Pessoa WHERE Email = ? AND Senha = ?';
-  db.query(query, [Email, Senha], (err, results) => {
-    if (err) {
-      console.error('Erro ao consultar o banco de dados: ' + err.stack);
-      res.status(500).send('Erro interno do servidor.');
-      return;
-    }
+  try {
+    const results = await pessoaModel.getPessoaLogin(Email, Senha);
 
     if (results.length > 0) {
       // Credenciais corretas
-      res.send('Login bem-sucedido!');
+      if (results[0].ID_TipoPessoa === 1) {
+        return res.redirect('/cliente');
+      } else if (results[0].ID_TipoPessoa === 2) {
+        return res.redirect('/funcionario');
+      } else {
+        return res.send('Tipo de usuário inválido.');
+      }
     } else {
       // Credenciais incorretas
-      res.send('Credenciais inválidas. Tente novamente.');
+      return res.send('Credenciais inválidas. Tente novamente.');
     }
-  });
-
+  } catch (err) {
+    console.error('Erro ao consultar o banco de dados: ' + err.stack);
+    return res.status(500).send('Erro interno do servidor.');
+  }
 });
 
 module.exports = router;
