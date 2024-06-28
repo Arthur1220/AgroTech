@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroTech</title>
+    <link rel="icon" href="Images/sheep_2.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/cadastroFazenda.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="Logomarca">
+            <p id="Nome_Principal"><strong>AgroTech</strong></p>
+            <p id="Nome_Secundario">Tecnologia na Agropecuária</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/">Areas de Atuacao</a></li>
+                <li><a href="/">Projetos</a></li>
+                <li><a href="/">Equipe</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="Home">
+            <form action="/cadastroFazenda" method="POST">
+                <h1>Cadastro de fazenda:</h1>
+                <p>Selecione o usuario.</p>
+
+                <div id="Usuario">
+                    <label for="Usuario">Usuario:</label>
+                    <select name="Usuario" id="Usuario" required>
+                        <option value="">Selecione o usuario</option>
+                        <% for (let i = 0; i < usuarios.length; i++) { %>
+                            <option value="<%= usuarios[i].id %>"><%= usuarios[i].Nome %></option>
+                        <% } %>
+                    </select>
+                </div>
+
+                <p>Adicione o endereco de moradia do usuario:</p>
+
+                <div id="NomeFazenda">
+                    <label for="NomeFazenda">Nome da Fazenda:</label>
+                    <input type="text" id="NomeFazenda" name="NomeFazenda">
+                </div>
+
+                <div id="CEP_Numero">
+                    <label for="CEP">CEP:</label>
+                    <input type="text" id="CEP" name="CEP">
+                    
+                    <label for="NumeroResidencia">Numero da Residencia:</label>
+                    <input type="text" id="NumeroResidencia" name="NumeroResidencia">
+                </div>
+                    
+                <div id="Cidade">
+                    <label for="Cidade">Cidade:</label>
+                    <input type="text" id="Cidade" name="Cidade">
+                </div>
+                    
+                <div id="Estado">
+                    <label for="Estado">Estado:</label>
+                    <input type="text" id="Estado" name="Estado">
+                </div>
+                    
+                <div id="Bairro">
+                    <label for="Bairro">Bairro:</label>
+                    <input type="text" id="Bairro" name="Bairro">
+                </div>
+                    
+                <div id="Logradouro">
+                    <label for="Logradouro">Logradouro:</label>
+                    <input type="text" id="Logradouro" name="Logradouro">
+                </div>
+
+                <div id="Complemento">
+                    <label for="Complemento">Complemento:</label>
+                    <input type="text" id="Complemento" name="Complemento">
+                </div>
+
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 AgroTech. Todos os direitos reservados.</p>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/">Areas de Atuacao</a></li>
+                <li><a href="/">Projetos</a></li>
+                <li><a href="/">Equipe</a></li>
+                <li><a href="/contato">Contato</a></li>
+                <li><a href="/login">Login</a></li>
+            </ul>
+        </nav>
+    </footer>
+
+</body>
+</html>

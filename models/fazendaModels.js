@@ -11,7 +11,8 @@ const getFazendaById = async (id) => {
 };
 
 const createFazenda = async (fazenda) => {
-    const { Nome, Created_at, ID_Cliente, ID_Endereco } = fazenda;
+    const { Nome, ID_Cliente, ID_Endereco } = fazenda;
+    const Created_at = new Date();
     const [result] = await pool.query(
         'INSERT INTO TBL_Fazenda (Nome, Created_at, ID_Cliente, ID_Endereco) VALUES (?, ?, ?, ?)',
         [Nome, Created_at, ID_Cliente, ID_Endereco]
