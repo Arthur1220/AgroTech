@@ -22,6 +22,7 @@ app.use('/contato', require('./routes/contato'));
 app.use('/login', require('./routes/login'));
 app.use('/cliente', require('./routes/cliente'));
 app.use('/pedidoSuporte', require('./routes/pedidoSuporte'));
+app.use('/viewSuporte', require('./routes/viewSuporte'));
 
 // Iniciar o servidor
 const PORT = process.env.PORT || 8000;
