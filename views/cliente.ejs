@@ -6,7 +6,6 @@
     <title>AgroTech</title>
     <link rel="icon" href="Images/sheep_2.ico" type="image/x-icon">
     <link rel="stylesheet" href="/css/cliente.css">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
@@ -31,9 +30,9 @@
         <div class="Home"> 
             <section>
                 <h1>Gerenciamento de conta: </h1>
-                <li id="option"><a href="/">Editar</a></li>
+                <li id="option"><a href="/pedidoSuporte">Editar</a></li>
 
-                <div class="DadosPessoais"">
+                <div class="DadosPessoais">
                     <section>
                         <h2>Dados Pessoais: </h2>
                         
@@ -41,17 +40,16 @@
                         <p><strong>CPF: </strong> <span id="cpf"></span></p>
                         <p><strong>Telefone: </strong> <span id="telefone"></span></p>
                         <p><strong>Email: </strong> <span id="email"></span></p>
-                        
                     </section>
                 </div>
             </section>
 
             <p id="titulo"><strong>Suas Fazendas:</strong></p>
-            <li id="option"><a href="/">Adicionar Nova Fazenda</a></li>
+            <li id="option"><a href="/pedidoSuporte">Adicionar Nova Fazenda</a></li>
             <div id="Fazenda" class="Fazenda">
                 <section>
                     <p><strong>Nome da fazenda: Boa colheita. </strong></p>
-                    <p><strong>Enderaço: Rua Silva Jardim, 245, Centro, Ilhéus-Ba, Brasil.</strong></p>
+                    <p><strong>Endereço: <span id="endereco"></span></strong></p>
                     <div id="options_Fazenda">
                         <li><a href="/">Editar</a></li>
                         <li><a href="/">Deletar</a></li>
@@ -60,7 +58,7 @@
             </div>
 
             <p id="titulo"><strong>Seus Softwares: </strong></p>
-            <li id="option"><a href="/">Adquirir Novos Softwares</a></li>
+            <li id="option"><a href="/pedidoSuporte">Adquirir Novos Softwares</a></li>
             <div id="Softwares" class="Softwares">
                 <section>
                     <p><strong>Gerenciamento de Caprinos. </strong></p>
@@ -82,14 +80,15 @@
                 <li><a href="/login">Login</a></li>
             </ul>
         </nav>
-    </footer>  
-    
+    </footer>    
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const username = localStorage.getItem('username');
             const cpf = localStorage.getItem('cpf');
             const telefone = localStorage.getItem('telefone');
             const email = localStorage.getItem('email');
+            const endereco = localStorage.getItem('endereco');
             
             if (username) {
                 document.getElementById('username').textContent = username;
@@ -103,8 +102,19 @@
             if (email) {
                 document.getElementById('email').textContent = email;
             }
+            if (endereco) {
+                document.getElementById('endereco').textContent = endereco;
+            }
+            
+            // Enviar ID de endereço para o servidor para obter detalhes
+            fetch(`/cliente?endereco=${endereco}`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Dados do endereço:', data);
+                    // Exibir dados do endereço, se necessário
+                })
+                .catch(error => console.error('Erro ao buscar dados do endereço:', error));
         });
     </script>
-    
 </body>
 </html>

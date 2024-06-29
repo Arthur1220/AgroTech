@@ -67,6 +67,12 @@ VALUES
     ('Fazenda Boa Vista', 1, 1),
     ('Fazenda Alegre', 2, 2);
 
+-- Inserindo dados na tabela TBL_Software
+INSERT INTO TBL_Software (Nome, Created_at, ID_Cliente, ID_Produto)
+VALUES 
+    ('Software BRCO', '2021-01-01', 1, 2),
+    ('Software SPOT', '2021-02-01', 2, 3);
+
 -- Inserindo dados na tabela TBL_Suporte
 INSERT INTO TBL_Suporte (Descricao, ID_Cliente) 
 VALUES 

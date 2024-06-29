@@ -10,6 +10,11 @@ const getItensPedidoById = async (id) => {
     return rows;
 };
 
+const getItensPedidoByCliente = async (id) => {
+    const [rows] = await pool.query('SELECT ID_Pedido, DataPedido FROM TBL_ItensPedido WHERE ID_Cliente = ?', [id]);
+    return rows;
+}
+
 const createItensPedido = async (itensPedido) => {
     const { DataPedido, ValorTotal, ID_Cliente, ID_Pagamento, ID_StatusPedido } = itensPedido;
     const [result] = await pool.query(
@@ -33,4 +38,4 @@ const deleteItensPedido = async (id) => {
     return result.affectedRows;
 };
 
-module.exports = { getItensPedidos, getItensPedidoById, createItensPedido, updateItensPedido, deleteItensPedido };
+module.exports = { getItensPedidos, getItensPedidoById, getItensPedidoByCliente, createItensPedido, updateItensPedido, deleteItensPedido };
