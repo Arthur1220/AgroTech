@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroTech</title>
+    <link rel="icon" href="Images/sheep_2.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/pedidoSuporte.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="Logomarca">
+            <p id="Nome_Principal"><strong>AgroTech</strong></p>
+            <p id="Nome_Secundario">Tecnologia na Agropecuária</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/">Areas de Atuacao</a></li>
+                <li><a href="/">Projetos</a></li>
+                <li><a href="/">Equipe</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="Home">
+            <section>
+                <h3>Pedido de suporte:</h3>
+                <p>Preencha o formulario a seguir para fazer o pedido de suporte, e assim que possivel entraremos em contato para resolver o seu problema</p>
+                <form action="/pedidoSuporte" method="POST">
+                    <div id="Assunto">
+                        <label for="Assunto">Assunto:</label>
+                        <input type="text" id="Assunto" name="Assunto" required>
+                    </div>
+
+                    <div id="tipoSuporte">
+                        <label for="tipoSuporte">Tipo de Suporte:</label>
+                        <select id="tipoSuporte" name="tipoSuporte" required>
+                            <option value="1">Suporte Tecnico</option>
+                            <option value="2">Suporte Administrativo</option>
+                            <option value="3">Suporte Financeiro</option>
+                            <option value="4">Suporte de Vendas</option>
+                            <option value="5">Suporte de Informacoes Pessoais</option>
+                            <option value="6">Suporte de Compras</option>
+                            <option value="7">Outro</option>
+                        </select>
+                    </div>
+ 
+                    <div id="Mensagem">
+                        <label for="Mensagem">Mensagem:</label>
+                        <textarea id="Mensagem" name="Mensagem" required></textarea>
+                    </div>
+
+                    <!-- Campo oculto para armazenar o ID -->
+                    <input type="hidden" id="idUsuario" name="idUsuario">
+
+                    <button type="submit">Enviar</button>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2024 AgroTech. Todos os direitos reservados.</p>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/">Areas de Atuacao</a></li>
+                <li><a href="/">Projetos</a></li>
+                <li><a href="/">Equipe</a></li>
+                <li><a href="/contato">Contato</a></li>
+                <li><a href="/login">Login</a></li>
+            </ul>
+        </nav>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const idUsuario = localStorage.getItem('id');
+            if (idUsuario) {
+                document.getElementById('idUsuario').value = idUsuario;
+            }
+        });
+    </script>
+
+</body>
+</html>

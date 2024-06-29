@@ -36,9 +36,9 @@
                 <div id="Usuario">
                     <label for="Usuario">Usuario:</label>
                     <select name="Usuario" id="Usuario" required>
-                        <option value="">Selecione o usuario</option>
+                        <option selected disabled value="">Selecione o usuario</option>
                         <% for (let i = 0; i < usuarios.length; i++) { %>
-                            <option value="<%= usuarios[i].id %>"><%= usuarios[i].Nome %></option>
+                            <option value="<%= usuarios[i].ID_Cliente %>"><%= usuarios[i].Nome %></option>
                         <% } %>
                     </select>
                 </div>

@@ -29,19 +29,19 @@
             <section id="Principal">
                 <img src="/images/sheep_2.ico" alt="Logo da AgroTech">
                 <h1>AgroTech</h1>
-                <h2>Tecnologia na Agropecuaria</h2>
+                <h2>Tecnologia na Agropecuária</h2>
             </section>
 
             <section>
-                <form action="/login" method="POST">
+                <form id="loginForm">
                     <div id="Email">
-                        <label for="Email">Email:</label>
-                        <input type="email" id="Email" name="Email" required>
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="Email" required>
                     </div>
 
                     <div id="Senha">
-                        <label for="Senha">Senha:</label>
-                        <input type="password" id="Senha" name="Senha" required>
+                        <label for="senha">Senha:</label>
+                        <input type="password" id="senha" name="Senha" required>
                     </div>
 
                     <button type="submit">Enviar</button>
@@ -64,6 +64,63 @@
             </ul>
         </nav>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginForm = document.getElementById('loginForm');
+            const emailInput = document.getElementById('email');
+            const senhaInput = document.getElementById('senha');
+    
+            loginForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const email = emailInput.value;
+                const senha = senhaInput.value;
+    
+                const dados = {
+                    Email: email,
+                    Senha: senha
+                };
+    
+                fetch('/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(dados)
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro ao tentar fazer login');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Login realizado com sucesso', data);
+                    localStorage.setItem('id', data.ID);
+                    localStorage.setItem('username', data.Nome);
+                    localStorage.setItem('email', data.Email);
+                    localStorage.setItem('telefone', data.Telefone);
+                    localStorage.setItem('cpf', data.CPF);
+                    localStorage.setItem('endereco', data.Endereco);
+                    localStorage.setItem('tipo', data.Tipo);
+                    
+                    if (data.Tipo == 1) {
+                        window.location.href = '/cliente';
+                    } else if (data.Tipo == 2) {
+                        window.location.href = '/funcionario';
+                    } else {
+                        console.error('Tipo de usuário inválido.');
+                        window.location.href = '/login';
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro ao fazer login', error);
+                    emailInput.classList.add('input-error');
+                    senhaInput.classList.add('input-error');
+                });
+            });
+        });
+    </script>
 
 </body>
 </html>

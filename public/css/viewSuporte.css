@@ -82,7 +82,7 @@ main {
 .Home {
     display: flex;
     justify-content: center;
-    gap: 5px;
+    gap: 50px;
     align-items: center;
     flex-direction: column;
     
@@ -106,97 +106,7 @@ main {
     margin-top: 20px;
 }
 
-#titulo {
-    font-size: 28px;
-    text-align: center;
-    margin-top: 20px;
-}
-
-.DadosPessoais section{
-    position: relative;
-    text-align: center;
-    flex: none;
-    width: 350px;
-    height: 275px;
-    border: 2px solid #00000015;
-    padding: 25px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15); 
-    margin: 20px auto;
-}
-
-#option  {
-    list-style: none;
-    text-align: center;
-}
-
-#option a {
-    text-decoration: underline;
-    color: #000;
-    font-size: 14px;
-    transition: color 0.3s ease;
-}
-
-#option a:hover {
-    color: rgba(0, 0, 0, 0.400);
-}
-
-.Fazenda {
-    display: flex;
-    gap: 15px;
-    position: relative;
-    overflow: auto;
-    width: 90vw;
-}
-
-.Fazenda p{
-    text-align: center; 
-    font-size: 18px;
-}
-
-.Fazenda h3{
-    position: absolute;
-    bottom: 30px;
-    text-align: center;
-    font-size: 16px;
-}
-
-.Fazenda section {
-    position: relative;
-    flex: none;
-    width: 350px;
-    height: 225px;
-    border: 2px solid #00000015;
-    padding: 25px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15); 
-    margin: 20px auto;
-}
-
-#options_Fazenda {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    align-items: center;
-    flex-direction: row;
-    margin-top: 15px;
-}
-
-#options_Fazenda li {
-    text-align: center;
-    display: inline-block;
-}
-
-#options_Fazenda li a {
-    text-decoration: underline;
-    color: #000;
-    font-size: 16px;
-    transition: color 0.3s ease;
-}
-
-#options_Fazenda li a:hover {
-    color: rgba(0, 0, 0, 0.400);
-}
-
-.Softwares {
+.Pedido {
     display: flex;
     gap: 15px;
     position: relative;
@@ -205,33 +115,28 @@ main {
     width: 90vw;
 }
 
-.Softwares section {
+.Pedido p{
+    text-align: center; 
+    font-size: 18px;
+}
+
+.Pedido h3{
+    position: absolute;
+    bottom: 30px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.Pedido section {
     position: relative;
     flex: none;
     width: 350px;
-    height: 175px;
+    height: 400px;
     border: 2px solid #00000015;
     padding: 25px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15); 
     margin: 20px auto;
 }
-
-.Softwares li {
-    list-style: none;
-    margin-top: 10px;
-}
-
-.Softwares li a {
-    text-decoration: underline;
-    color: #000;
-    font-size: 16px;
-    transition: color 0.3s ease;
-}
-
-.Softwares li a:hover {
-    color: rgba(0, 0, 0, 0.400);
-}
-
 /* Rodapé */
 footer {
     font-family: Outfit;

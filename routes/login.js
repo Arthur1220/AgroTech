@@ -16,21 +16,26 @@ router.post('/', async (req, res) => {
     const results = await pessoaModel.getPessoaLogin(Email, Senha);
 
     if (results.length > 0) {
-      // Credenciais corretas
-      if (results[0].ID_TipoPessoa === 1) {
-        return res.redirect('/cliente');
-      } else if (results[0].ID_TipoPessoa === 2) {
-        return res.redirect('/funcionario');
-      } else {
-        return res.send('Tipo de usuário inválido.');
-      }
+      const user = results[0];
+      const data = {
+        ID: user.ID_Cliente,
+        Nome: user.Nome,
+        CPF: user.CPF,
+        Email: user.Email,
+        Telefone: user.Telefone,
+        Endereco: user.ID_Endereco,
+        Tipo: user.ID_TipoPessoa
+      };
+      
+      // Envia os dados do usuário como resposta JSON
+      return res.json(data);
     } else {
       // Credenciais incorretas
-      return res.send('Credenciais inválidas. Tente novamente.');
+      return res.status(401).json({ error: 'Credenciais inválidas. Tente novamente.' });
     }
   } catch (err) {
     console.error('Erro ao consultar o banco de dados: ' + err.stack);
-    return res.status(500).send('Erro interno do servidor.');
+    return res.status(500).json({ error: 'Erro interno do servidor.' });
   }
 });
 
