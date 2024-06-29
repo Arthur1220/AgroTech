@@ -10,6 +10,11 @@ const getSoftwareById = async (id) => {
     return rows;
 }
 
+const getSoftwareByClienteId = async (id) => {
+    const [rows] = await pool.query('SELECT * FROM TBL_Software WHERE ID_Cliente = ?', [id]);
+    return rows;
+}
+
 const createSoftware = async (software) => {
     const { Nome, Created_at, ID_Cliente, ID_Produto } = software;
     const [result] = await pool.query(
@@ -33,4 +38,4 @@ const deleteSoftware = async (id) => {
     return result.affectedRows;
 }
 
-module.exports = { getSoftware, getSoftwareById, createSoftware, updateSoftware, deleteSoftware };
+module.exports = { getSoftware, getSoftwareById, getSoftwareByClienteId, createSoftware, updateSoftware, deleteSoftware };
