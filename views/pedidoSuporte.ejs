@@ -32,7 +32,7 @@
             <section>
                 <h3>Pedido de suporte:</h3>
                 <p>Preencha o formulario a seguir para fazer o pedido de suporte, e assim que possivel entraremos em contato para resolver o seu problema</p>
-                <form action="/contato" method="POST">
+                <form action="/pedidoSuporte" method="POST">
                     <div id="Assunto">
                         <label for="Assunto">Assunto:</label>
                         <input type="text" id="Assunto" name="Assunto" required>
@@ -56,6 +56,9 @@
                         <textarea id="Mensagem" name="Mensagem" required></textarea>
                     </div>
 
+                    <!-- Campo oculto para armazenar o ID -->
+                    <input type="hidden" id="idUsuario" name="idUsuario">
+
                     <button type="submit">Enviar</button>
                 </form>
             </section>
@@ -75,6 +78,15 @@
             </ul>
         </nav>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const idUsuario = localStorage.getItem('id');
+            if (idUsuario) {
+                document.getElementById('idUsuario').value = idUsuario;
+            }
+        });
+    </script>
 
 </body>
 </html>

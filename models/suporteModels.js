@@ -11,7 +11,8 @@ const getSuporteById = async (id) => {
 };
 
 const createSuporte = async (suporte) => {
-    const { Descricao, Created_at, ID_Cliente } = suporte;
+    const { Descricao, ID_Cliente } = suporte;
+    const Created_at = new Date();
     const [result] = await pool.query(
         'INSERT INTO TBL_Suporte (Descricao, Created_at, ID_Cliente) VALUES (?, ?, ?)',
         [Descricao, Created_at, ID_Cliente]
