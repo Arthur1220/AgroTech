@@ -32,7 +32,7 @@ router.post('/', async (req, res) => {
     }
 
     // Armazenar as informações do formulário na tabela TBL_Mensagens do banco de dados
-    const id_endereco = await enderecoModel.createEndereco({Usuario, Logradouro, NumeroResidencia, Bairro, Cidade, Estado, CEP});
+    const id_endereco = await enderecoModel.createEndereco({ Logradouro, NumeroResidencia, Bairro, Cidade, Estado, CEP});
     await fazendaModel.createFazenda({ NomeFazenda, Usuario, id_endereco });
     console.log('Dados do formulário armazenados com sucesso!');
 

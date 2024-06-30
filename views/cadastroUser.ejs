@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroTech</title>
+    <link rel="icon" href="Images/sheep_2.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/cadastroUser.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="Logomarca">
+            <p id="Nome_Principal"><strong>AgroTech</strong></p>
+            <p id="Nome_Secundario">Tecnologia na Agropecuária</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/">Areas de Atuacao</a></li>
+                <li><a href="/">Projetos</a></li>
+                <li><a href="/">Equipe</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="Home">
+            <form action="/cadastroUser" method="POST">
+                <h1>Cadastro de usuario:</h1>
+                <p>Selecione o tipo de usuario.</p>
+
+                <div id="TipoUsuario">
+                    <label for="TipoUsuario">Tipo de usuario:</label>
+                    <select name="TipoUsuario" id="TipoUsuario" required>
+                        <option value="1">Administrador</option>
+                        <option value="2">Funcionario</option>
+                        <option value="3">Cliente</option>
+                    </select>
+                </div>
+
+                <p>Preencha com os dados do usuario.</p>
+
+                <div id="Nome">
+                    <label for="Nome">Nome completo:</label>
+                    <input type="text" id="Nome" name="Nome" required>
+                </div>
+
+                <div id="CPF">
+                    <label for="CPF">CPF:</label>
+                    <input type="text" id="CPF" name="CPF" required>
+                </div>
+
+                <div id="DataNascimento">
+                    <label for="DataNascimento">Data de Nascimento:</label>
+                    <input type="date" id="DataNascimento" name="DataNascimento" required>
+                </div>
+
+                <div id="Email">
+                    <label for="Email">Email:</label>
+                    <input type="email" id="Email" name="Email" required>
+                </div>
+
+                <div id="Telefone">
+                    <label for="DDD">DDD</label>
+                    <input id="DDD_Label" type="tel" id="DDD" name="DDD" required>
+
+                    <label for="Telefone">Telefone:</label>
+                    <input id="Tel_Label" type="tel" id="Telefone" name="Telefone" required>
+                </div>
+
+                <div id="Senha">
+                    <label for="Senha">Senha:</label>
+                    <input type="password" id="Senha" name="Senha" required>
+                </div>
+
+                <p>Adicione o endereco de moradia do usuario:</p>
+
+                <div id="CEP_Numero">
+                    <label for="inputCEP">CEP:</label>
+                    <input type="text" id="CEP" name="CEP">
+                    
+                    <label for="inputNumeroResidencia">Numero da Residencia:</label>
+                    <input type="text" id="NumeroResidencia" name="NumeroResidencia">
+                </div>
+                    
+                <div id="Cidade">
+                    <label for="inputCidade">Cidade:</label>
+                    <input type="text" id="Cidade" name="Cidade">
+                </div>
+                    
+                <div id="Estado">
+                    <label for="inputEstado">Estado:</label>
+                    <input type="text" id="Estado" name="Estado">
+                </div>
+                    
+                <div id="Bairro">
+                    <label for="inputBairro">Bairro:</label>
+                    <input type="text" id="Bairro" name="Bairro">
+                </div>
+                    
+                <div id="Rua">
+                    <label for="Logradouro">Logradouro:</label>
+                    <input type="text" id="Logradouro" name="Logradouro">
+                </div>
+
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 AgroTech. Todos os direitos reservados.</p>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/">Areas de Atuacao</a></li>
+                <li><a href="/">Projetos</a></li>
+                <li><a href="/">Equipe</a></li>
+                <li><a href="/contato">Contato</a></li>
+                <li><a href="/login">Login</a></li>
+            </ul>
+        </nav>
+    </footer>
+
+</body>
+</html>
