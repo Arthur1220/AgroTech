@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroTech</title>
+    <link rel="icon" href="Images/sheep_2.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/viewSuporte.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="Logomarca">
+            <p id="Nome_Principal"><strong>AgroTech</strong></p>
+            <p id="Nome_Secundario">Tecnologia na Agropecuária</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/">Areas de Atuacao</a></li>
+                <li><a href="/">Projetos</a></li>
+                <li><a href="/">Equipe</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="Home"> 
+            <section id="Principal">
+                <h1>Visualização de Mensagens: </h1>
+                <p id="Explicacao">Selecione a mensagem que deseja visualizar.</p>
+            </section>
+
+            <div id="Pedido" class="Pedido">
+                <% if (mensagens.length > 0) { %>
+                    <% mensagens.forEach(mensagem => { %>
+                        <section>
+                            <p><strong>Cliente: <%= mensagem.Nome %></strong></p>
+                            <p><strong>Email: <%= mensagem.Email %></strong></p>
+                            <p><strong>Telefone: <%= mensagem.DDD + ' - ' + mensagem.Telefone %></strong></p>
+                            <p id="Mensagem"><%= mensagem.Mensagem %></p>
+                        </section>
+                    <% }); %>
+                <% } else { %>
+                    <p>Nenhum pedido de suporte encontrado.</p>
+                <% } %>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2024 AgroTech. Todos os direitos reservados.</p>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/">Areas de Atuacao</a></li>
+                <li><a href="/">Projetos</a></li>
+                <li><a href="/">Equipe</a></li>
+                <li><a href="/contato">Contato</a></li>
+                <li><a href="/login">Login</a></li>
+            </ul>
+        </nav>
+    </footer>
+</body>
+</html>
