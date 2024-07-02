@@ -48,8 +48,7 @@
             <li id="option"><a href="/pedidoSuporte">Adicionar Nova Fazenda</a></li>
             <div id="Fazenda" class="Fazenda">
                 <section>
-                    <p><strong>Nome da fazenda: Boa colheita. </strong></p>
-                    <p><strong>Endereço: <span id="endereco"></span></strong></p>
+                    <div id="fazendasContainer"></div> <!-- Div para fazendas -->
                     <div id="options_Fazenda">
                         <li><a href="/">Editar</a></li>
                         <li><a href="/">Deletar</a></li>
@@ -61,8 +60,7 @@
             <li id="option"><a href="/pedidoSuporte">Adquirir Novos Softwares</a></li>
             <div id="Softwares" class="Softwares">
                 <section>
-                    <p><strong>Gerenciamento de Caprinos. </strong></p>
-                    <p><strong>Data de renovação: </strong>01/07/2024</p>
+                    <div id="softwaresContainer"></div> <!-- Div para softwares -->
                 </section>
             </div>
         </div>
@@ -89,31 +87,89 @@
             const telefone = localStorage.getItem('telefone');
             const email = localStorage.getItem('email');
             const endereco = localStorage.getItem('endereco');
+            const id = localStorage.getItem('id'); // Obtenha o ID do cliente do localStorage
             
             if (username) {
-                document.getElementById('username').textContent = username;
+                const usernameElement = document.getElementById('username');
+                if (usernameElement) {
+                    usernameElement.textContent = username;
+                }
             }
             if (cpf) {
-                document.getElementById('cpf').textContent = cpf;
+                const cpfElement = document.getElementById('cpf');
+                if (cpfElement) {
+                    cpfElement.textContent = cpf;
+                }
             }
             if (telefone) {
-                document.getElementById('telefone').textContent = telefone;
+                const telefoneElement = document.getElementById('telefone');
+                if (telefoneElement) {
+                    telefoneElement.textContent = telefone;
+                }
             }
             if (email) {
-                document.getElementById('email').textContent = email;
+                const emailElement = document.getElementById('email');
+                if (emailElement) {
+                    emailElement.textContent = email;
+                }
             }
             if (endereco) {
-                document.getElementById('endereco').textContent = endereco;
+                const enderecoElement = document.getElementById('endereco');
+                if (enderecoElement) {
+                    enderecoElement.textContent = endereco;
+                }
             }
-            
-            // Enviar ID de endereço para o servidor para obter detalhes
-            fetch(`/cliente?endereco=${endereco}`)
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Dados do endereço:', data);
-                    // Exibir dados do endereço, se necessário
-                })
-                .catch(error => console.error('Erro ao buscar dados do endereço:', error));
+
+            if (id) { // Verifique se o ID está definido antes de usá-lo
+
+                // Enviar ID do cliente para o servidor para obter softwares
+                fetch(`/cliente/softwares?clienteId=${id}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const softwaresContainer = document.getElementById('softwaresContainer');
+                        if (softwaresContainer) {
+                            softwaresContainer.innerHTML = ''; // Limpa o container
+                            data.forEach(software => {
+                                const softwareElement = document.createElement('p');
+                                softwareElement.textContent = `Software: ${software.Nome}`;
+                                softwaresContainer.appendChild(softwareElement);
+                            });
+                        } else {
+                            console.error('Elemento softwaresContainer não encontrado.');
+                        }
+                    })
+                    .catch(error => console.error('Erro ao buscar softwares do cliente:', error));
+
+                // Enviar ID do cliente para o servidor para obter fazendas
+                fetch(`/cliente/fazendas?clienteId=${id}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const fazendasContainer = document.getElementById('fazendasContainer');
+                        if (fazendasContainer) {
+                            fazendasContainer.innerHTML = ''; // Limpa o container
+                            data.forEach(fazenda => {
+                                const fazendaElement = document.createElement('div');
+                                fazendaElement.innerHTML = `
+                                    <p><strong>Nome: </strong>${fazenda.Nome}</p>
+                                    <p><strong>Endereço: </strong>${fazenda.endereco}</p>
+                                `;
+                                fazendasContainer.appendChild(fazendaElement);
+                            });
+                        } else {
+                            console.error('Elemento fazendasContainer não encontrado.');
+                        }
+                    })
+                    .catch(error => console.error('Erro ao buscar fazendas do cliente:', error));
+
+                // Enviar ID de endereço para o servidor para obter detalhes
+                fetch(`/cliente/endereco?endereco=${endereco}`)
+                    .then(response => response.json())
+                    .then(data => {
+                    })
+                    .catch(error => console.error('Erro ao buscar dados do endereço:', error));
+            } else {
+                console.error('ID do cliente não encontrado no localStorage.');
+            }
         });
     </script>
 </body>
