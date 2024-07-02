@@ -34,17 +34,18 @@
             
             <div class="Funcionario-Info">
                 <h2>Informações Pessoais</h2>
-                <p><strong>Nome:</strong> <span>João da Silva</span></p>
-                <p><strong>CPF:</strong> <span>123.456.789-00</span></p>
-                <p><strong>Cargo:</strong> <span>Analista de Sistemas</span></p>
-                <p><strong>Salário:</strong> <span>R$ 5.000,00</span></p>
+                <p><strong>Nome: </strong> <span id="username"></span></p>
+                <p><strong>CPF: </strong> <span id="cpf"></span></p>
+                <p><strong>Telefone: </strong> <span id="telefone"></span></p>
+                <p><strong>Email: </strong> <span id="email"></span></p>
             </div>
 
             <div class="Options">
-                <button>Pedidos de Suporte</button>
-                <button>Visualizacao de Tabelas</button>
-                <button>Cadastro de Usuario</button>
-                <button>Relatorios</button>
+                <a href="/viewSuporte"><button>Pedidos de Suporte</button></a>
+                <a href="/cadastroFazenda"><button>Cadastro de Fazenda</button></a>
+                <a href="/cadastroUser"><button>Cadastro de Usuario</button></a>
+                <a href="/relatorio"><button>Relatorios</button></a>
+                <a href="/viewMensagens"><button>Mensagens recebidas</button></a>
             </div>
 
         </div>
@@ -64,5 +65,27 @@
         </nav>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const username = localStorage.getItem('username');
+            const cpf = localStorage.getItem('cpf');
+            const telefone = localStorage.getItem('telefone');
+            const email = localStorage.getItem('email');
+            const endereco = localStorage.getItem('endereco');
+            
+            if (username) {
+                document.getElementById('username').textContent = username;
+            }
+            if (cpf) {
+                document.getElementById('cpf').textContent = cpf;
+            }
+            if (telefone) {
+                document.getElementById('telefone').textContent = telefone;
+            }
+            if (email) {
+                document.getElementById('email').textContent = email;
+            }
+        });
+    </script>
 </body>
 </html>

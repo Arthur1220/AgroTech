@@ -1,0 +1,253 @@
+/* Resetando alguns estilos padrão do navegador */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos gerais */
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #fff;
+}
+
+/* Cabeçalho */
+header {
+    font-family: Outfit;
+    background-color: #fff;
+    padding: 10px 0;
+    width: 100%;
+    position: relative;
+    top: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+.Logomarca {
+    cursor: pointer; 
+    width: 200px;
+    height: 30px;
+    position: absolute;
+    left: 150px; 
+    top: 50%;  
+    transform: translateY(-50%);  
+
+}
+
+#Nome_Principal {
+    font-size: 20px;
+}
+
+#Nome_Secundario {
+    font-size: 14px;
+}
+
+header nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header nav ul{
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+header nav ul li {
+    margin: 0 10px;
+}
+
+header nav ul li a {
+    text-decoration: overline;
+    color: #000;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+header nav ul li a:hover {
+    color: rgba(0, 0, 0, 0.400);
+}
+
+/* Conteúdo principal */
+main {
+    font-family: Outfit;
+    display: flex;
+    flex-direction: column;
+}
+
+.Home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 120px;
+    gap: 50px;
+}
+
+.Home div {
+    align-items: center;
+    width: 800px;
+    justify-content: center;
+}
+
+.Home h1 {
+    font-size: 56px;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.Home p {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.Home input {
+    width: 50%;
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+#Button_1 {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#Button_2 {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Rodapé */
+footer {
+    margin-top: 100px;
+    font-family: Outfit;
+    font-size: 12px;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+footer p {
+    text-align: left;
+    padding-left: 20px;
+}
+
+footer nav {
+    display: flex;
+    float: right;
+    justify-content: center;
+    align-items: center;
+}
+
+footer nav ul{
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+footer nav ul li {
+    margin: 0 10px;
+}
+
+footer nav ul li a {
+    text-decoration: overline;
+    color: #000;
+    transition: color 0.3s ease;
+}
+
+footer nav ul li a:hover {
+    color: rgba(0, 0, 0, 0.400);
+}
+
+/* Responsividade */
+@media screen and (max-width: 768px) {
+    /* Cabeçalho */
+    header {
+        flex-direction: row;
+        align-items: center; 
+        justify-content: space-between; 
+    }
+
+    header img {
+        position: absolute;
+        left: 0;
+        top: 20px;
+        margin: 0 auto;
+    }
+
+    header nav ul {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        margin-left: auto;
+        text-align: right;
+    }
+
+    /* Conteúdo principal */
+
+    /* Rodapé */
+    footer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    footer nav {
+        margin-top: 10px;
+    }
+    
+}
+
+@media screen and (max-width: 480px) {
+    /* Cabeçalho */
+    header {
+        flex-direction: row;
+        align-items: up; 
+        justify-content: space-between; 
+    }
+
+    header img {
+        position: absolute;
+        left: 0;
+        top: 15;
+    }
+
+    header nav ul {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-left: auto;
+        text-align: right;
+    }
+
+    /* Conteúdo principal */
+
+    /* Rodapé */
+    footer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    footer nav {
+        margin-top: 10px;
+    }
+}

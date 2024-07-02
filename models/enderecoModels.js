@@ -11,11 +11,13 @@ const getEnderecoById = async (id) => {
 }
 
 const createEndereco = async (endereco) => {
-    const { ID_Pessoa, Logradouro, Numero, Complemento, Bairro, Cidade, Estado, CEP } = endereco;
+    const { Logradouro, NumeroResidencia, Bairro, Cidade, Estado, CEP } = endereco;
+
     const [result] = await pool.query(
         'INSERT INTO TBL_Endereco (CEP, Estado, Cidade, Bairro, Rua, Numero) VALUES (?, ?, ?, ?, ?, ?)',
-        [ID_Pessoa, Logradouro, Numero, Complemento, Bairro, Cidade, Estado, CEP]
+        [CEP, Estado, Cidade, Bairro, Logradouro, NumeroResidencia]
     );
+    console.log(result);
     return result.insertId;
 };
 

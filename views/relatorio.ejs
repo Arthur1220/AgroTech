@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroTech</title>
+    <link rel="icon" href="Images/sheep_2.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/relatorio.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        .table-results {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px; /* Espaçamento entre tabelas */
+        }
+        .table-results th, .table-results td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        .table-results th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="Logomarca">
+            <p id="Nome_Principal"><strong>AgroTech</strong></p>
+            <p id="Nome_Secundario">Tecnologia na Agropecuária</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/">Areas de Atuacao</a></li>
+                <li><a href="/">Projetos</a></li>
+                <li><a href="/">Equipe</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="Home">
+            <h1>Visualização das informações:</h1>
+            <div class="endereco">
+                <h2>Endereco</h2>
+                <input type="text" id="search-endereco" placeholder="Digite sua pesquisa...">
+                <button id="Button_1" onclick="searchTable('Endereco')">Pesquisar</button>
+                <button id="Button_2" onclick="showAll('Endereco')">Mostrar Tudo</button>
+                <div id="Endereco-container"></div>
+            </div>
+            <div class="estoque">
+                <h2>Estoque</h2>
+                <input type="text" id="search-estoque" placeholder="Digite sua pesquisa...">
+                <button id="Button_1" onclick="searchTable('Estoque')">Pesquisar</button>
+                <button id="Button_2" onclick="showAll('Estoque')">Mostrar Tudo</button>
+                <div id="Estoque-container"></div>
+            </div>
+            <div class="fazenda">
+                <h2>Fazenda</h2>
+                <input type="text" id="search-fazenda" placeholder="Digite sua pesquisa...">
+                <button id="Button_1" onclick="searchTable('Fazenda')">Pesquisar</button>
+                <button id="Button_2" onclick="showAll('Fazenda')">Mostrar Tudo</button>
+                <div id="Fazenda-container"></div>
+            </div>
+            <div class="itensPedidos">
+                <h2>Itens Pedidos</h2>
+                <input type="text" id="search-itensPedidos" placeholder="Digite sua pesquisa...">
+                <button id="Button_1" onclick="searchTable('ItensPedidos')">Pesquisar</button>
+                <button id="Button_2" onclick="showAll('ItensPedidos')">Mostrar Tudo</button>
+                <div id="ItensPedidos-container"></div>
+            </div>
+            <div class="pedidos">
+                <h2>Pedidos</h2>
+                <input type="text" id="search-pedidos" placeholder="Digite sua pesquisa...">
+                <button id="Button_1" onclick="searchTable('Pedidos')">Pesquisar</button>
+                <button id="Button_2" onclick="showAll('Pedidos')">Mostrar Tudo</button>
+                <div id="Pedidos-container"></div>
+            </div>
+            <div class="pessoa">
+                <h2>Pessoa</h2>
+                <input type="text" id="search-pessoa" placeholder="Digite sua pesquisa...">
+                <button id="Button_1" onclick="searchTable('Pessoa')">Pesquisar</button>
+                <button id="Button_2" onclick="showAll('Pessoa')">Mostrar Tudo</button>
+                <div id="Pessoa-container"></div>
+            </div>
+            <div class="produtos">
+                <h2>Produtos</h2>
+                <input type="text" id="search-produtos" placeholder="Digite sua pesquisa...">
+                <button id="Button_1" onclick="searchTable('Produtos')">Pesquisar</button>
+                <button id="Button_2" onclick="showAll('Produtos')">Mostrar Tudo</button>
+                <div id="Produtos-container"></div>
+            </div>
+            <div class="softwares">
+                <h2>Softwares</h2>
+                <input type="text" id="search-softwares" placeholder="Digite sua pesquisa...">
+                <button id="Button_1" onclick="searchTable('Software')">Pesquisar</button>
+                <button id="Button_2" onclick="showAll('Software')">Mostrar Tudo</button>
+                <div id="Software-container"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2024 AgroTech. Todos os direitos reservados.</p>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/">Areas de Atuacao</a></li>
+                <li><a href="/">Projetos</a></li>
+                <li><a href="/">Equipe</a></li>
+                <li><a href="/contato">Contato</a></li>
+                <li><a href="/login">Login</a></li>
+            </ul>
+        </nav>
+    </footer>
+
+    <script>
+        function searchTable(tableName) {
+            const query = document.getElementById(`search-${tableName}`);
+            if (!query) {
+                console.error(`Element with ID 'search-${tableName}' not found.`);
+                return;
+            }
+            const inputValue = query.value;
+            fetch(`/relatorio/${tableName}/search?q=${inputValue}`)
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById(`${tableName}-container`);
+                    if (!container) {
+                        console.error(`Container for ${tableName} not found.`);
+                        return;
+                    }
+                    container.innerHTML = ''; // Limpa o container
+                    if (data.length === 0) {
+                        container.innerHTML = '<p>Nenhum resultado encontrado.</p>';
+                        return;
+                    }
+                    const table = document.createElement('table');
+                    table.classList.add('table-results');
+
+                    // Cabeçalho da tabela
+                    const headerRow = table.createTHead().insertRow();
+                    Object.keys(data[0]).forEach(key => {
+                        const headerCell = document.createElement('th');
+                        headerCell.textContent = key;
+                        headerRow.appendChild(headerCell);
+                    });
+
+                    // Linhas de dados
+                    data.forEach(item => {
+                        const row = table.insertRow();
+                        Object.values(item).forEach(value => {
+                            const cell = row.insertCell();
+                            cell.textContent = value;
+                        });
+                    });
+
+                    container.appendChild(table);
+                })
+                .catch(error => console.error('Erro ao buscar dados:', error));
+        }
+
+        function showAll(tableName) {
+            fetch(`/relatorio/${tableName}/all`)
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById(`${tableName}-container`);
+                    if (!container) {
+                        console.error(`Container for ${tableName} not found.`);
+                        return;
+                    }
+                    container.innerHTML = ''; // Limpa o container
+                    if (data.length === 0) {
+                        container.innerHTML = '<p>Nenhum resultado encontrado.</p>';
+                        return;
+                    }
+                    const table = document.createElement('table');
+                    table.classList.add('table-results');
+
+                    // Cabeçalho da tabela
+                    const headerRow = table.createTHead().insertRow();
+                    Object.keys(data[0]).forEach(key => {
+                        const headerCell = document.createElement('th');
+                        headerCell.textContent = key;
+                        headerRow.appendChild(headerCell);
+                    });
+
+                    // Linhas de dados
+                    data.forEach(item => {
+                        const row = table.insertRow();
+                        Object.values(item).forEach(value => {
+                            const cell = row.insertCell();
+                            cell.textContent = value;
+                        });
+                    });
+
+                    container.appendChild(table);
+                })
+                .catch(error => console.error('Erro ao buscar dados:', error));
+        }
+    </script>
+</body>
+</html>

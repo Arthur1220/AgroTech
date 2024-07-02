@@ -21,9 +21,13 @@ app.use('/', indexRouter);
 app.use('/contato', require('./routes/contato'));
 app.use('/login', require('./routes/login'));
 app.use('/cliente', require('./routes/cliente'));
+app.use('/cadastroFazenda', require('./routes/cadastroFazenda'));
+app.use('/cadastroUser', require('./routes/cadastroUser'));
 app.use('/pedidoSuporte', require('./routes/pedidoSuporte'));
 app.use('/viewSuporte', require('./routes/viewSuporte'));
 app.use('/funcionario', require('./routes/funcionario'));
+app.use('/relatorio', require('./routes/relatorio')); 
+app.use('/viewMensagens', require('./routes/viewMensagens'));
 
 // Iniciar o servidor
 const PORT = process.env.PORT || 8000;

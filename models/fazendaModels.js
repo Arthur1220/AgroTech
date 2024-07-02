@@ -10,11 +10,17 @@ const getFazendaById = async (id) => {
     return rows;
 };
 
+const getFazendaByClienteId = async (id) => {
+    const [rows] = await pool.query('SELECT F.*, CONCAT(E.rua, ", ", E.numero, ", ", E.cidade, ", ", E.estado) AS endereco FROM TBL_Fazenda F JOIN TBL_Endereco E ON F.ID_Endereco = E.ID_Endereco WHERE F.ID_Cliente = ?', [id]);
+    return rows;
+}
+
 const createFazenda = async (fazenda) => {
-    const { Nome, Created_at, ID_Cliente, ID_Endereco } = fazenda;
+    const { NomeFazenda, Usuario, id_endereco } = fazenda;
+    const Created_at = new Date();
     const [result] = await pool.query(
         'INSERT INTO TBL_Fazenda (Nome, Created_at, ID_Cliente, ID_Endereco) VALUES (?, ?, ?, ?)',
-        [Nome, Created_at, ID_Cliente, ID_Endereco]
+        [NomeFazenda, Created_at, Usuario, id_endereco]
     );
     return result.insertId;
 };
@@ -33,4 +39,4 @@ const deleteFazenda = async (id) => {
     return result.affectedRows;
 };
 
-module.exports = { getFazendas, getFazendaById, createFazenda, updateFazenda, deleteFazenda };
+module.exports = { getFazendas, getFazendaById, getFazendaByClienteId, createFazenda, updateFazenda, deleteFazenda };

@@ -10,16 +10,17 @@ const getPessoaById = async (id) => {
     return rows;
 }
 
+
 const getPessoaLogin = async (email, senha) => {
     const [rows] = await pool.query('SELECT * FROM TBL_Pessoa WHERE Email = ? AND Senha = ?', [email, senha]);
     return rows;
 }
 
 const createPessoa = async (pessoa) => {
-    const { Nome, CPF, Email, Telefone, Endereco, ID_TipoPessoa } = pessoa;
+    const { Nome, CPF, DataNascimento, Email, Senha, Telefone, TipoUsuario, id_endereco } = pessoa;
     const [result] = await pool.query(
-        'INSERT INTO TBL_Pessoa (Nome, CPF, Email, Telefone, Endereco, ID_TipoPessoa) VALUES (?, ?, ?, ?, ?, ?)',
-        [Nome, CPF, Email, Telefone, Endereco, ID_TipoPessoa]
+        'INSERT INTO TBL_Pessoa (Nome, CPF, DataNascimento, Email, Senha, Telefone, ID_TipoPessoa, ID_Endereco) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+        [Nome, CPF, DataNascimento, Email, Senha, Telefone, TipoUsuario, id_endereco]
     );
     return result.insertId;
 }
