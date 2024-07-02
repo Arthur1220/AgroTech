@@ -39,10 +39,9 @@ router.post('/', async (req, res) => {
         ID_Cliente: idUsuario
       });
 
-      res.status(200).send('Pedido de suporte enviado com sucesso.');
+      res.redirect('/cliente');
   } catch (err) {
       console.error('Erro ao enviar pedido de suporte:', err);
-      res.status(500).send('Erro interno do servidor.');
   }
 });
 

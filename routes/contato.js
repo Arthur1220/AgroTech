@@ -7,7 +7,9 @@ require('dotenv').config();
 
 // Rota para a página de contato
 router.get('/', (req, res) => {
-  res.render('contato', { title: 'Contato' });
+  res.render('contato', { 
+      title: 'Contato',
+  });
 });
 
 // Lida com o envio do formulário de contato
@@ -23,7 +25,9 @@ router.post('/', async (req, res) => {
 
     // Armazenar as informações do formulário na tabela TBL_Mensagens do banco de dados
     await mensagensModel.createMensagem({ Nome, Email, DDD, Telefone, Mensagem });
-    console.log('Dados do formulário armazenados com sucesso!');
+    console.log('Dados do formulário armazenados com sucesso!: ');
+
+    res.redirect('/');
 
     /*
     // Configurar o transporte de email
